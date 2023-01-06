@@ -1,0 +1,70 @@
+# LIBRARY MANGEMENT SYSTEM
+class Library:
+    def __init__(self,list,name):
+        self.name=name
+        self.list=list
+        self.lendict={}
+
+    def display(self):
+        for book in self.list:
+            print(book)
+
+
+    def lend(self,user,book):
+        if book not in self.lendict.keys():
+            self.lendict.update({book:user})
+            print("Lender book database has been updated,You can take book now")
+        else :
+            print(f"Book is already issued by the {self.lendict[book]}")
+
+    def addBook(self,book):
+            self.list.append(book)
+            print("The Book is Added Successfully")
+
+    def ReturnBook(self,book):
+        self.lendict.pop(book)
+
+
+if __name__ == '__main__':
+
+   L1=Library(['Python','Complete Java','Let Us C','Let Us C++','Machine Learning','Linear Algebra','Abstract Algebra',
+              'Classic Algebra','English'],"NATIONAL LIBRARY")
+
+   while(True):
+       print("WELCOME THE NATIONAL LIBRARY")
+       print("*********************************")
+       print("1.For Display Book\n2.For Lending\n3.For Adding Books\n4.For Returning Book")
+       Choice_of_user=input()
+       if Choice_of_user not in ['1','2','3','4']:
+           print("Enter the valid input")
+           continue
+       else:
+           Choice_of_user=int(Choice_of_user)
+
+       if Choice_of_user==1:
+           L1.display()
+       elif Choice_of_user==2:
+           book=input("Enter The Name of The Book :")
+           user=input("Enter Your Name :")
+           L1.lend(user,book)
+       elif Choice_of_user==3:
+           book=input("Enter The Name of The Book :")
+           L1.addBook(book)
+       elif Choice_of_user==4:
+           book=input("Enter The Name of The Book :")
+           L1.ReturnBook(book)
+       else :
+           print("It,s Not A Valid Option")
+
+       print("Press Q To Exit And C To Continue :")
+       user_Cho=" "
+       while(user_Cho!='Q' and user_Cho!='C'):
+           user_Cho=input()
+           if user_Cho=='Q':
+               exit()
+           else:
+               continue
+
+
+
+
